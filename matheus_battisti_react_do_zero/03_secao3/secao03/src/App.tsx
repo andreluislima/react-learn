@@ -7,6 +7,7 @@ import ListRender from "./components/hooks/ListRender";
 import { ManageData } from "./components/hooks/ManageData";
 import PreviusState from "./components/hooks/PreviusState";
 import { ShowUserName } from "./props/ShowUserName";
+import { DestruturingProps } from "./components/DestruturingProps";
 
 function App() {
 
@@ -67,6 +68,14 @@ function App() {
       </div>
       <hr />
       <ShowUserName name={userName1}/>
+      <hr />
+
+      {/* destruturing */}
+      <DestruturingProps brand="BMW" km={1000000} color="azul"/>
+
+      <hr />
+      {/* Listas Renderizadas */}
+      <ListRender/>
     </>
   );
 }
