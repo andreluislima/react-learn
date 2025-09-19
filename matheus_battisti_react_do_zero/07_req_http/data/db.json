@@ -1,0 +1,29 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Camisa",
+      "price": 59.9
+    },
+    {
+      "id": "2",
+      "name": "Casaco",
+      "price": 129.9
+    },
+    {
+      "id": "3",
+      "name": "Bermuda",
+      "price": 39.9
+    },
+    {
+      "id": "2fd3",
+      "name": "Teste Product",
+      "price": "3121"
+    },
+    {
+      "id": "446b",
+      "name": "Capa de Chuva",
+      "price": "50.9"
+    }
+  ]
+}
