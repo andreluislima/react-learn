@@ -37,9 +37,13 @@ const handleSubmit = async (e) => {
     body: JSON.stringify(product)
   });
 
-  
-  console.log(product)
 
+  // 3 - Carregamento dinâmico
+  const addedProduct = await rest.json();
+
+  setProducts((prevProducts) => [...prevProducts, addedProduct])
+  setName("")
+  setPrice("")
 }
 
   return (
