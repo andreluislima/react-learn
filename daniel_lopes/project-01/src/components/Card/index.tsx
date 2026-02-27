@@ -5,6 +5,7 @@ import "./styles.css";
 // PROPS -> Também podem se chamar de parâmetros.
 // INTERPOLAÇÃO: Colocar um valor de uma constante ou variavel dentro do JSX.
 // INTERPOLAÇÃO: <h1> {nomeVariavel} </h1>
+// TEMPLATE LITERALS -> ``: Onde podemos por Js interpolado com strings.
 
 interface CardProps {
   imgUrl: string;
@@ -16,7 +17,7 @@ export default function Card(props: CardProps) {
   const [follow, setFollow] = useState(false);
 
   function handleFollowAndUnfollow() {
-    setFollow(!follow);
+    setFollow((prevState)=> !prevState); // 'prevState' é uma convenção de nomenclatura, podia ser qualquer nome. 
   }
 
   return (
@@ -26,7 +27,9 @@ export default function Card(props: CardProps) {
           <img src={props.imgUrl} alt="Carro - Onix 2020" />
           <strong>{props.name}</strong>
         </div>
-        <button onClick={handleFollowAndUnfollow}>
+        <button onClick={handleFollowAndUnfollow} 
+            className={`${follow ? "btn-follow" : "btn"}`}
+        >
           {follow ? "Unfollow" : "Follow"}
         </button>
       </div>
