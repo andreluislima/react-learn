@@ -52,8 +52,15 @@ export default function Card(props: CardProps) {
   // Mais utilizado
   useEffect(()=>{
     // console.warn("useEffect 3 chamado. Mudança no follow")
+    console.log("Montou o componente")
+    localStorage.setItem("card", "O card está aberto")
     if(follow){
       alert("Você passou a seguir mais uma pessoa.")
+    }
+
+    return ()=>{
+      console.log("Desmontou o componente...")
+      localStorage.removeItem("card")
     }
   }, [follow])
 
