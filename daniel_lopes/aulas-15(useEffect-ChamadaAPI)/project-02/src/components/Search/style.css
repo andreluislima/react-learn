@@ -1,0 +1,6 @@
+.container-search{
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin-bottom: 20px;
+}

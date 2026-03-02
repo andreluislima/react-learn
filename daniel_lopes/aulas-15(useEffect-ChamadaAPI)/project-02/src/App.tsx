@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { UseCard } from "./components/UseCard";
+import { Empty } from "./components/Empty";
+import { Search } from "./components/Search";
 import type { GithubUserType } from "./types";
-import EmptyImage from "../src/assets/EmptyImage.png";
 
 function App() {
   const [user, setUser] = useState<GithubUserType | null>(null);
@@ -30,42 +32,17 @@ function App() {
       searchUser();
     })();
   }, []);
+  
   return (
     <>
       <div className="container">
-        <div>
-          <input
-            type="text"
-            placeholder="Busque um usuário"
-            value={input}
-            onChange={(event) => setInput(event.target.value)}
-          />
+        <Search
+          handleSearchUser={searchUser}
+          value={input}
+          handleSetValue={setInput}
+        />
 
-          <button onClick={searchUser}>Buscar</button>
-        </div>
-
-        {user ? (
-          <div className="container-user">
-            <div>
-              <strong>Nome: </strong>
-              <span>{user?.name}</span>
-            </div>
-
-            <div>
-              <strong>Empresa: </strong>
-              <span>{user?.company}</span>
-            </div>
-
-            <div>
-              <img src={user?.avatar_url} alt="imagem" />
-            </div>
-          </div>
-        ) : (
-          <div className="container">
-            <img src={EmptyImage} alt="Empty" />
-            <span>Nenhum usuário encontrado.</span>
-          </div>
-        )}
+        {user ? <UseCard user={user} /> : <Empty />}
       </div>
     </>
   );

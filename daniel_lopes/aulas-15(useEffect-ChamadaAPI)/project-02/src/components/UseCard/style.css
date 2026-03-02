@@ -1,0 +1,11 @@
+.container-user {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}
+
+.container-user img {
+   width: 200px;
+   height: 200px;
+   border-radius: 50%;
+}
