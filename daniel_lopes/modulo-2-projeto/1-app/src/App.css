@@ -10,7 +10,7 @@
   /* background-color: purple; */
 }
 
-.container-app input [type="text"]{
+.container-app input {
   width: 540px;
 
   z-index: 2;
@@ -105,6 +105,11 @@
 
   height: 64px;
   gap: 24px;
+}
+
+.task-item__done{
+  text-decoration-line: line-through;
+  color: #d1d2da;
 }
 
 .task-item input{
