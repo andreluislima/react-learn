@@ -76,6 +76,23 @@
 
 }
 
+.container-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 400px;
+
+  gap: 16px;
+  color: #9495a5;
+
+}
+
+.content-tasks img {
+  width: 200px;
+  height: auto;
+}
+
 .content-tasks__actions {
   display: flex;
   justify-content: space-between;
@@ -107,12 +124,12 @@
   gap: 24px;
 }
 
-.task-item__done{
+.task-item__done {
   text-decoration-line: line-through;
   color: #d1d2da;
 }
 
-.task-item input{
+.task-item input {
   height: 24px;
   width: 24px;
 }
