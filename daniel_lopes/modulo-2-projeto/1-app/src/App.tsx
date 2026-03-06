@@ -1,27 +1,17 @@
 import { useState } from "react";
 import "./App.css";
 import type { TaskType } from "./types/TaskTypes";
+import { v4 as uuidv4 } from 'uuid';
+import { useLocalStorage } from "usehooks-ts";
+
 
 function App() {
   const [input, setInput] = useState("");
-  const [tasks, setTasks] = useState<TaskType[]>([
-
-    {
-      id: "1",
-      title: "Estudar React",
-      done: true,
-    },
-
-    {
-      id: "2",
-      title: "Estudar Java",
-      done: false,
-    },
-  ]);
+  const [tasks, setTasks] = useLocalStorage<TaskType[]>("tasks-list",[]);
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>){
     if(input.length && event.key === "Enter"){
-      setTasks([...tasks, {id:"5", done:false, title:input}])
+      setTasks([...tasks, {id:uuidv4(), done:false, title:input}])
       setInput("")
      }
   }
