@@ -8,6 +8,7 @@ import EmptyImage from "./assets/empty.svg";
 function App() {
   const [input, setInput] = useState("");
   const [tasks, setTasks] = useLocalStorage<TaskType[]>("tasks-list", []);
+  const [filter, setFilter] = useState<"all" | "done" | "pending">("all");
   const pendingTasksQtd = tasks.filter((tasks) => !tasks.done).length;
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -22,6 +23,28 @@ function App() {
       prevState.map((task) =>
         task.id === id ? { ...task, done: !task.done } : task,
       ),
+    );
+  }
+
+  function filteredTasks() {
+    switch (filter) {
+      case "all":
+        return tasks;
+
+      case "done":
+        return tasks.filter((task) => task.done);
+
+      case "pending":
+        return tasks.filter((task) => !task.done);
+
+      default:
+        return tasks;
+    }
+  }
+
+  function handleUncheckedAllCompletedTasks() {
+    setTasks((prevState) =>
+      prevState.map((task) => (task.done ? { ...task, done: false } : task)),
     );
   }
 
@@ -43,7 +66,7 @@ function App() {
       <div className="container_tasks">
         <ul className="content-tasks">
           <div>
-            {tasks.map((t) => (
+            {filteredTasks().map((t) => (
               <li
                 className={`task-item ${t.done ? "task-item__done" : ""}`}
                 key={t.id}
@@ -57,7 +80,7 @@ function App() {
               </li>
             ))}
 
-            {!tasks.length && (
+            {!filteredTasks().length && (
               <div className="container-empty">
                 <img src={EmptyImage} alt="empty" />
                 <h3>Nenhuma tarefa cadastrada!</h3>
@@ -67,15 +90,21 @@ function App() {
 
           <li className="content-tasks__actions">
             <div>
-              <a href="">{pendingTasksQtd} itens restantes</a>
+              <a href="#">{pendingTasksQtd} itens restantes</a>
             </div>
             <div>
-              <a href="">Todas</a>
-              <a href="">Ativas</a>
-              <a href="">Completadas</a>
+              <a href="#" onClick={() => setFilter("all")}>
+                Todas
+              </a>
+              <a href="#" onClick={() => setFilter("pending")}>
+                Ativas
+              </a>
+              <a href="#" onClick={() => setFilter("done")}>
+                Completadas
+              </a>
             </div>
             <div>
-              <a href="">Limpar Completadas</a>
+              <a href="#" onClick={handleUncheckedAllCompletedTasks}>Limpar Completadas</a>
             </div>
           </li>
         </ul>
