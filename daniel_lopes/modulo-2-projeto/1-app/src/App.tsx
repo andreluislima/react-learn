@@ -3,8 +3,8 @@ import "./App.css";
 import type { TaskType } from "./types/TaskTypes";
 import { v4 as uuidv4 } from "uuid";
 import { useLocalStorage } from "usehooks-ts";
-import EmptyImage from "./assets/empty.svg";
-
+import Empty from "./components/Empty/Empty";
+ 
 function App() {
   const [input, setInput] = useState("");
   const [tasks, setTasks] = useLocalStorage<TaskType[]>("tasks-list", []);
@@ -80,12 +80,7 @@ function App() {
               </li>
             ))}
 
-            {!filteredTasks().length && (
-              <div className="container-empty">
-                <img src={EmptyImage} alt="empty" />
-                <h3>Nenhuma tarefa cadastrada!</h3>
-              </div>
-            )}
+            {!filteredTasks().length && <Empty/>}
           </div>
 
           <li className="content-tasks__actions">
@@ -104,7 +99,9 @@ function App() {
               </a>
             </div>
             <div>
-              <a href="#" onClick={handleUncheckedAllCompletedTasks}>Limpar Completadas</a>
+              <a href="#" onClick={handleUncheckedAllCompletedTasks}>
+                Limpar Completadas
+              </a>
             </div>
           </li>
         </ul>
